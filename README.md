@@ -6,7 +6,7 @@ The starter code is forked from https://github.com/minggg/squad
 In this work, we proposed KnowGQA to integrate extra knowledge graph information into the question answering system using GCN and knowledge attention. We retrieve the knowledge graph data for each word entity and its related edges from ConceptNet[1] and build knowledge sub-graph for each context and generate knowledge representation using GCN. Such representation is then be integrated into question answering system using knowledge attention. The knowledge attention mechanism can be used in any question answering system. Here, we combine knowledge attention with QANet train the combined model in SQuAD 2.0 dataset. Results show that the extra knowledge extensively improve the performance of QANet in SQuAD 2.0, which prove the ability of our framework.
 
 ## 2. Run the code
-First, **cd** to repository file and type ` conda env create -f environment.yml ` to create conda environment.
+First, **cd** to repository file and type ` conda env create -f environment.yml ` to create conda environment.</br>
 Run `source activate squad `.
 Run `python setup.py`.
 We integrate four model in the this project: BiDAF_nochar, BiDAF[2], QANet[3] and KnowGQA. The BiDAF_nochar is the default BiDAF without char embedding. To test each model, type following:
