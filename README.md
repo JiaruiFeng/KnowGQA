@@ -7,13 +7,13 @@ In this work, we proposed KnowGQA to integrate extra knowledge graph information
 
 ## 2. Run the code
 First, **cd** to repository file and type ` conda env create -f environment.yml ` to create conda environment.</br>
-Run `source activate squad `.
-Run `python setup.py`.
-We integrate four model in the this project: BiDAF_nochar, BiDAF[2], QANet[3] and KnowGQA. The BiDAF_nochar is the default BiDAF without char embedding. To test each model, type following:
-BiDAF_nochar: `python trian.py -n=BiDAF_onchar --model_name=BiDAF_nochar --hidden_size=100`
-BiDAF_nochar: `python trian.py -n=BiDAF --model_name=BiDAF --hidden_size=100`
-QANet: `python trian.py -n=QANet --model_name=QANet --hidden_size=128 --h=8 --batch_size=32`
-KnowGQA:`python trian.py -n=KnowGQA --model_name=KnowGQA --hidden_size=96 --h=1 --batch_size=32`
+Run `source activate squad `.</br>
+Run `python setup.py`.</br>
+We integrate four model in the this project: BiDAF_nochar, BiDAF[2], QANet[3] and KnowGQA. The BiDAF_nochar is the default BiDAF without char embedding. To test each model, type following:</br>
+BiDAF_nochar: `python trian.py -n=BiDAF_onchar --model_name=BiDAF_nochar --hidden_size=100`</br>
+BiDAF_nochar: `python trian.py -n=BiDAF --model_name=BiDAF --hidden_size=100`</br>
+QANet: `python trian.py -n=QANet --model_name=QANet --hidden_size=128 --h=8 --batch_size=32`</br>
+KnowGQA:`python trian.py -n=KnowGQA --model_name=KnowGQA --hidden_size=96 --h=1 --batch_size=32`</br>
 
 ## 3. Model Structure
 
