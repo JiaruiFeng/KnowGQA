@@ -37,5 +37,5 @@ Thank for Standard University and teacher group of CS224N for providing such won
 
 ## Reference
 [1]R. Speer, J. Chin, and C. Havasi, ConceptNet 5.5: An Open Multilingual Graph of General Knowledge. 2019.</br>
-[2]M. Seo, A. Kembhavi, A. Farhadi, and H. Hajishirzi, “Bidirectional Attention Flow for Machine Comprehension,” Nov. 2016, Accessed: Aug. 22, 2020. [Online]. Available: https://arxiv.org/abs/1611.01603.
+[2]M. Seo, A. Kembhavi, A. Farhadi, and H. Hajishirzi, “Bidirectional Attention Flow for Machine Comprehension,” Nov. 2016, Accessed: Aug. 22, 2020. [Online]. Available: https://arxiv.org/abs/1611.01603.</br>
 [3]A. W. Yu et al., “QaNet: Combining local convolution with global self-attention for reading comprehension,” 2018.
