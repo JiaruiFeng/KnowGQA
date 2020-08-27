@@ -17,12 +17,22 @@ KnowGQA:`python trian.py -n=KnowGQA --model_name=KnowGQA --hidden_size=96 --h=1 
 
 ## 3. Model Structure
 
-![KnowGQA](.\KnowGQA.png)
+![KnowGQA](KnowGQA.png)
 
 ## 4. Results
 
+| **Model**    |  **F1**   | **EM**    | **AvNA**  |
+| ------------ | :-------: | --------- | --------- |
+| BiDAF-nochar |   61.52   | 57.89     | 68.56     |
+| BiDAF-char   |   64.55   | 60.91     | 71.08     |
+| QANet-small  |   65.64   | 62.21     | 71.7      |
+| QANet-large  | **68.57** | **64.95** | **74.72** |
+| KnowGQA      |   67.25   | 64.29     | 72.86     |
+
+Where BiADF-nochar and BiDAF-char indicate whether BiDAF model have char embedding. For QANet-small,  we set hidden size equal to 96 and number of head equal to 1. In QANet-large, we set hidden size to 128 and Number of head equal to 8, which is the default setting in the original paper. So far, we haven't yet test KnowGQA in large setting cause the personal GPU memory limit problem.
 
 ## Acknowledgment 
+
 Thank for Standard University and teacher group of CS224N for providing such wonderful course and online-free material. It really helps me learn both fundamental and state-of-art techniques in NLP field, which also inspired me the interest to explore more in this field. Meanwhile, thanks for the starter code in this default project.
 
 ## Reference
