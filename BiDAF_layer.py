@@ -59,7 +59,7 @@ class BiDAFEmbeddingwithChar(nn.Module):
         assert hidden_size%2==0
         self.drop_prob = drop_prob
         self.word_embed = nn.Embedding.from_pretrained(word_vectors)
-        self.char_embed=nn.Embedding.from_pretrained(char_vectors)
+        self.char_embed=nn.Embedding.from_pretrained(char_vectors,freeze=False)
         self.word_proj = nn.Linear(word_vectors.size(1), hidden_size//2, bias=False)
         self.char_len=char_len
         self.char_embed_dim=char_vectors.size(1)
