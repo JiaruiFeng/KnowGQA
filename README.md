@@ -17,6 +17,8 @@ KnowGQA:`python trian.py -n=KnowGQA --model_name=KnowGQA --hidden_size=96 --h=1 
 
 ## 3. Model Structure
 
+![KnowGQA](.\KnowGQA.png)
+
 ## 4. Results
 
 
