@@ -4,6 +4,12 @@ import torch.nn.functional as F
 from QANet_layer import clones,InitializedConv1d
 from util import masked_softmax
 class GCN(nn.Module):
+    '''
+    Graph convolutional Network layer
+    Args:
+        input_size(int): the hidden length of input word embdedding
+        output_size(int): the output length of word embedding
+    '''
     def __init__(self,input_size,output_size,drop_prob=0.1):
         super(GCN, self).__init__()
         self.proj=InitializedConv1d(input_size,output_size)
@@ -14,6 +20,13 @@ class GCN(nn.Module):
         return self.norm(x)
 
 class Diffpool(nn.Module):
+    '''
+    Diffpool layer, which can generate compact graph representation.
+    Here, we simultaneously compact both graph size and hidden size.
+    Args:
+        input_size(int): the hidden length of input word embedding
+        output_size(int): The hidden length of output word embedding, and also the output graph size.
+    '''
     def __init__(self,input_size,output_size,drop_prob=0.1):
         super(Diffpool, self).__init__()
         self.repre=GCN(input_size,output_size,drop_prob)
@@ -29,20 +42,28 @@ class Diffpool(nn.Module):
 
 
 class KnowledgeRepresentation(nn.Module):
+    '''
+    Residual GCN Block
+    Args:
+        input_size(int): the hidden length of input word embedding
+        output_size(int): The hidden length of output word embedding, and also the output graph size.
+
+    '''
     def __init__(self,input_size,output_size,N,drop_prob=0.1):
         super(KnowledgeRepresentation, self).__init__()
         self.diffpool=Diffpool(input_size,output_size,drop_prob)
         self.GCN_layers=clones(GCN(output_size,output_size,drop_prob),N-1)
 
     def forward(self,x,adj):
-        x,adj=self.diffpool(x,adj)
+        x,adj=self.diffpool(x,adj)   # Batch_size * output_size * output_size
         for l in self.GCN_layers:
-            x=l(x,adj)+x
+            x=l(x,adj)+x             # Batch_size * output_size * output_size
 
-        return F.relu(x.sum(dim=-2))
+        return F.relu(x.sum(dim=-2))   # Batch_size * output_size
 
-
+'''
 class KnowledgeAttention(nn.Module):
+
     def __init__(self,hidden_size):
         super(KnowledgeAttention, self).__init__()
         self.gate_proj=InitializedConv1d(4*hidden_size,1,bias=True)
@@ -77,8 +98,13 @@ class KnowledgeAttention(nn.Module):
         return M_g
 
 
+'''
+
 
 class KnowledgeAttention_s(nn.Module):
+    '''
+    Knowledge attention mechanism
+    '''
     def __init__(self,hidden_size):
         super(KnowledgeAttention_s, self).__init__()
         self.gate_proj=InitializedConv1d(4*hidden_size,1,bias=True)
@@ -102,5 +128,5 @@ class KnowledgeAttention_s(nn.Module):
         #gate function
         gate=torch.cat([m,M_g,torch.mul(m,M_g),torch.sub(m,M_g)],dim=-1)  #Batch_size * c_len *4*hidden_size
         gate=torch.sigmoid(self.gate_proj(gate))
-        M_g=torch.mul(gate,m)+torch.mul((1-gate),M_g)
+        M_g=torch.mul(gate,m)+torch.mul((1-gate),M_g)    # Batch_size * c_len * hidden_size
         return M_g

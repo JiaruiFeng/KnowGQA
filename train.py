@@ -262,7 +262,7 @@ def main(args):
                                        split='dev',
                                        num_visuals=args.num_visuals)
             elif args.model_name=="BiDAF_nochar":
-                for cw_idxs,  qw_idxs,  y1, y2, ids in train_loader:
+                for cw_idxs, cc_idxs, qw_idxs, qc_idxs,  y1, y2, ids in train_loader:
                     # Setup for forward
                     cw_idxs = cw_idxs.to(device)
                     qw_idxs = qw_idxs.to(device)
@@ -425,7 +425,7 @@ def evaluate(model, model_name,data_loader, device, eval_file, max_len, use_squa
                                                use_squad_v2)
                 pred_dict.update(preds)
         elif model_name=="BiDAF_nochar":
-            for cw_idxs,  qw_idxs,  y1, y2, ids in data_loader:
+            for cw_idxs, cc_idxs, qw_idxs, qc_idxs,  y1, y2, ids in data_loader:
                 # Setup for forward
                 cw_idxs = cw_idxs.to(device)
                 qw_idxs = qw_idxs.to(device)

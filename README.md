@@ -8,12 +8,12 @@ In this work, we proposed KnowGQA to integrate extra knowledge graph information
 ## 2. Run the code
 First, **cd** to repository file and type ` conda env create -f environment.yml ` to create conda environment.</br>
 Run `source activate squad `.</br>
-Run `python setup.py`.</br>
+If you only want to explore BiDAF and QANet model, run `python setup.py`. If you want to explore KnowGQA, also run `python setup.py --add_knowledge_graph=True`</br>
 We integrate four model in the this project: BiDAF_nochar, BiDAF[2], QANet[3] and KnowGQA. The BiDAF_nochar is the default BiDAF without char embedding. To test each model, type following:</br>
 BiDAF_nochar: `python trian.py -n=BiDAF_onchar --model_name=BiDAF_nochar --hidden_size=100`</br>
 BiDAF: `python trian.py -n=BiDAF --model_name=BiDAF --hidden_size=100`</br>
-QANet: `python trian.py -n=QANet --model_name=QANet --hidden_size=128 --h=8 --batch_size=32`</br>
-KnowGQA:`python trian.py -n=KnowGQA --model_name=KnowGQA --hidden_size=96 --h=1 --batch_size=32`</br>
+QANet: `python trian.py -n=QANet --model_name=QANet --hidden_size=128 --h=8 --batch_size=16`</br>
+KnowGQA:`python trian.py -n=KnowGQA --model_name=KnowGQA --hidden_size=96 --h=1 --batch_size=16`</br>
 
 ## 3. Model Structure
 
@@ -21,15 +21,20 @@ KnowGQA:`python trian.py -n=KnowGQA --model_name=KnowGQA --hidden_size=96 --h=1 
 
 ## 4. Results
 
-| **Model**    |  **F1**   | **EM**    | **AvNA**  |
-| ------------ | :-------: | --------- | --------- |
-| BiDAF-nochar |   61.52   | 57.89     | 68.56     |
-| BiDAF-char   |   64.55   | 60.91     | 71.08     |
-| QANet-small  |   65.64   | 62.21     | 71.7      |
-| QANet-large  | **68.57** | **64.95** | **74.72** |
-| KnowGQA      |   67.25   | 64.29     | 72.86     |
+| **Model**     | **F1**    | **EM**    | **AvNA**  |
+| ------------- | --------- | --------- | --------- |
+| BiDAF-nochar  | 61.52     | 57.89     | 68.56     |
+| BiDAF-char    | 64.55     | 60.91     | 71.08     |
+| QANet-small   | 65.64     | 62.21     | 71.7      |
+| QANet-large   | 68.57     | 64.95     | 74.72     |
+| KnowGQA-small | 67.25     | 64.29     | 72.86     |
+| KnowGQA-large | **69.77** | **66.46** | **75.11** |
 
-Where BiADF-nochar and BiDAF-char indicate whether BiDAF model have char embedding. For QANet-small,  we set hidden size equal to 96 and number of head equal to 1. In QANet-large, we set hidden size to 128 and Number of head equal to 8, which is the default setting in the original paper. So far, we haven't yet test KnowGQA in large setting cause the personal GPU memory limit problem.
+Table 1 shows the EM and F1 result for each model in modified dev dataset. Notice that BiDAF-nochar is the baseline model in CS224 project starter code. The only difference between BiDAF-char and BiDAF-nochar is that the former combine char embedding, which is the default BiDAF in original paper. Compare KnowGQA-small and QANet-small, we can see that the F1 and EM score increased by **1.61** and **2.08** respectively after we integrate extra knowledge into model. Meanwhile, the F1 score and EM score of KnowGQA-large increased by **1.2** and **1.51** respectively compare to QANet-large. 
+
+## 5. Report
+
+For detail model structure and experiment, you can read my [report](KnowGQA.pdf).
 
 ## Acknowledgment 
 

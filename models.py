@@ -226,6 +226,17 @@ class  QANet(nn.Module):
 
 
 class KnowGQA(nn.Module):
+    '''
+    KnowGQA model
+    Since KnowGQA share many strucutre from QANet, we directly use the layer in QANet_layer.py
+    Args
+        word_vectors (torch.Tensor): Pre-trained word vectors.
+        char_vectors(torch.Tensor): Initial Char vectors.
+        Char_len(int): The maximum length of char in each word.
+        hidden_size (int): Number of features in the hidden state at each layer.
+        h(int):Number of header in each self attention layer.
+        drop_prob (float): Dropout probability.
+    '''
     def __init__(self, word_vectors, char_vectors, char_len,hidden_size=512,h=4, drop_prob=0.1):
         super(KnowGQA, self).__init__()
         c = copy.deepcopy
@@ -298,21 +309,21 @@ class KnowGQA(nn.Module):
         q_syntac_emb=self.q_emb_encoder(q_emb,q_mask)
         c_syntac_emb=self.c_emb_encoder(c_emb,c_mask)
 
-        co_emb=self.emb.word_embed(co_idxs)
-        g=self.GCNBlock(co_emb,adjs)
+        co_emb=self.emb.word_embed(co_idxs)    #(batch_size, g_len, hidden_size)
+        g=self.GCNBlock(co_emb,adjs)           #(batch_size, hidden_size)
 
-        q_g=self.knowledge_att(q_syntac_emb,g,q_mask)
-        c_g=self.knowledge_att(c_syntac_emb,g,c_mask)
+        q_g=self.knowledge_att(q_syntac_emb,g,q_mask)     # (batch_size, q_len, hidden_size)
+        c_g=self.knowledge_att(c_syntac_emb,g,c_mask)     #  (Batch_size, c_len, hidden_size)
 
         att = self.att(c_g, q_g,
                        c_mask, q_mask)    # (batch_size, c_len, 4 * hidden_size)
 
-        att_proj=self.att_porj(att)
+        att_proj=self.att_porj(att)         #(batch_size, c_len, hidden_size)
 
 
-        m0=self.modeling_encoder(att_proj,c_mask)
-        m1=self.modeling_encoder(m0,c_mask)
-        m2=self.modeling_encoder(m1,c_mask)
+        m0=self.modeling_encoder(att_proj,c_mask)        #(batch_size, c_len, hidden_size)
+        m1=self.modeling_encoder(m0,c_mask)          #(batch_size, c_len, hidden_size)
+        m2=self.modeling_encoder(m1,c_mask)          #(batch_size, c_len, hidden_size)
 
         out=self.out_gen(m0,m1,m2,c_mask)
 

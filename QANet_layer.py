@@ -85,7 +85,12 @@ class QANetEmbedding(nn.Module):
 
 
 class PositionalEncoding(nn.Module):
+    '''
     "Implement the PE function."
+    Args
+        d_model(int): hidden_size of encoder and decoder
+    '''
+
 
     def __init__(self, d_model, drop_prob, max_len=5000):
         super(PositionalEncoding, self).__init__()
@@ -109,6 +114,9 @@ class PositionalEncoding(nn.Module):
 class InitializedConv1d(nn.Module):
     """
     Replace default linear projection
+    Args:
+        in_channels(int): input size
+        out_channels(int): output size
     """
     def __init__(self, in_channels, out_channels, kernel_size=1,groups=1,padding=0,stride=1,relu=False,bias=False):
         super(InitializedConv1d, self).__init__()
@@ -151,6 +159,9 @@ def attention(query,key,value,mask,dropout=None):
 class MultiHeadedAttention(nn.Module):
     """
     Multi-Header attention mechanism
+    Args:
+        hidden_size(int): hidden size of model
+        h(int):number of head in multi-head attention
     """
     def __init__(self,hidden_size,h,drop_prob=0.1):
         super(MultiHeadedAttention, self).__init__()
@@ -176,7 +187,9 @@ class MultiHeadedAttention(nn.Module):
 class DepthwiseSeparableConv1d(nn.Module):
     """
     Depthwise separable convolution
-
+    Args:
+        in_channels: number of channels in the input, here is the hidden size of encoder
+        out_channels:number of channels in the output, here is also the hidden size of encoder
     """
     def __init__(self, in_channels,out_channels,kernel_size,padding=0, bias=True):
         super(DepthwiseSeparableConv1d, self).__init__()
