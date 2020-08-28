@@ -1,8 +1,8 @@
 # KnowGQA
-Question Answering model with SQuAD2.0. (Stanfard University CS224N default project)
+Question Answering model with SQuAD2.0. (Stanford University CS224N default project)
 The starter code is forked from https://github.com/minggg/squad
 
-Stanfard University CS224N course websit:http://web.stanford.edu/class/cs224n/
+Stanford University CS224N course websit:http://web.stanford.edu/class/cs224n/
 
 course video of Winter 2019:https://www.youtube.com/playlist?list=PLoROMvodv4rOhcuXMZkNm7j3fVwBBY42z
 
@@ -42,7 +42,7 @@ For detail model structure and experiment, you can read my [report](KnowGQA.pdf)
 
 ## Acknowledgment 
 
-Thank for Standard University and teacher group of CS224N for providing such wonderful course and online-free material. It really helps me learn both fundamental and state-of-art techniques in NLP field, which also inspired me the interest to explore more in this field. Meanwhile, thanks for the starter code in this default project.
+Thank for Stanford University and teacher group of CS224N for providing such wonderful course and online-free material. It really helps me learn both fundamental and state-of-art techniques in NLP field, which also inspired me the interest to explore more in this field. Meanwhile, thanks for the starter code in this default project.
 
 ## Reference
 [1]R. Speer, J. Chin, and C. Havasi, ConceptNet 5.5: An Open Multilingual Graph of General Knowledge. 2019.</br>
