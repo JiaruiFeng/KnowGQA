@@ -2,6 +2,10 @@
 Question Answering model with SQuAD2.0. (Stanfard University CS224N default project)
 The starter code is forked from https://github.com/minggg/squad
 
+Stanfard University CS224N course websit:http://web.stanford.edu/class/cs224n/
+
+course video of Winter 2019:https://www.youtube.com/playlist?list=PLoROMvodv4rOhcuXMZkNm7j3fVwBBY42z
+
 ## 1.Introduction
 In this work, we proposed KnowGQA to integrate extra knowledge graph information into the question answering system using GCN and knowledge attention. We retrieve the knowledge graph data for each word entity and its related edges from ConceptNet[1] and build knowledge sub-graph for each context and generate knowledge representation using GCN. Such representation is then be integrated into question answering system using knowledge attention. The knowledge attention mechanism can be used in any question answering system. Here, we combine knowledge attention with QANet train the combined model in SQuAD 2.0 dataset. Results show that the extra knowledge extensively improve the performance of QANet in SQuAD 2.0, which prove the ability of our framework.
 
