@@ -19,6 +19,8 @@ BiDAF: `python trian.py -n=BiDAF --model_name=BiDAF --hidden_size=100`</br>
 QANet: `python trian.py -n=QANet --model_name=QANet --hidden_size=128 --h=8 --batch_size=16`</br>
 KnowGQA:`python trian.py -n=KnowGQA --model_name=KnowGQA --hidden_size=96 --h=1 --batch_size=16`</br>
 
+To view training process in tensorboard, run `tensorboard --logdir=save --port=5678` and open `localhost:5678/`
+
 ## 3. Model Structure
 
 ![KnowGQA](KnowGQA.png)
